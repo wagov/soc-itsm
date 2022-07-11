@@ -4,7 +4,7 @@
 - Create organisation and invite accounts to new organisation (SOC)
 - Log into the new portal using **Continue with Microsoft** (Customer)
 
-### Ticket creation (Customer)
+### Ticket creation (Client)
 - Create a **Request Assistance** ticket
 - Create a **Cyber Incident** ticket
 - View an automatically created **Sentinel Incident** ticket
