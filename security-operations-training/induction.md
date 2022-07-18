@@ -16,7 +16,7 @@ There are developer/student versions available for free that should be sufficien
 Please use the above links or existing services to organise yourself admin access, then work through the training below.
 
 ## Recommended structured learning approach
-The below courses are all free, and provide a good foundational base for cyber security defensive activities.
+The below training and certifications are all free, and provide a good foundational base for cyber security defensive activities. It's recommended to work through them in order.
 
 ### Security Operations Basics
 1. [Microsoft Security Operations Analyst (SC-200)](https://docs.microsoft.com/en-us/certifications/exams/sc-200) certification
