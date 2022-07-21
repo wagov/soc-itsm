@@ -5,10 +5,12 @@
 - [3. Recommended structured learning approach](#3-recommended-structured-learning-approach)
   - [3.1. IT Infrastructure and Cloud fundamentals](#31-it-infrastructure-and-cloud-fundamentals)
   - [3.2. Security Operations Basics](#32-security-operations-basics)
-    - [3.2.1. Security Investigations](#321-security-investigations)
-  - [3.3. Cheatsheets](#33-cheatsheets)
-  - [3.4. Microsoft tooling in depth](#34-microsoft-tooling-in-depth)
-  - [3.5. Public cloud tooling in depth](#35-public-cloud-tooling-in-depth)
+    - [3.2.1. Documentation, Programming and scripting fundamentals](#321-documentation-programming-and-scripting-fundamentals)
+    - [3.2.2. Security Investigations with Python Notebooks](#322-security-investigations-with-python-notebooks)
+  - [3.3. Skill Check - Develop a Security Notebook](#33-skill-check---develop-a-security-notebook)
+  - [3.4. Cheatsheets](#34-cheatsheets)
+  - [3.5. Microsoft tooling in depth](#35-microsoft-tooling-in-depth)
+  - [3.6. Public cloud tooling in depth](#36-public-cloud-tooling-in-depth)
 
 ## 1. Overview
 
@@ -48,20 +50,45 @@ Learn the basics of triaging and responding to incidents, including collaboratio
 1. [Microsoft Security Operations Analyst (SC-200)](https://docs.microsoft.com/en-us/certifications/exams/sc-200) certification
 2. [Cybrary MITRE ATT&CK Defender (MAD)](https://app.cybrary.it/browse/course/mitre-attack-defender-mad-attack-for-cyber-threat-intelligence) training
 
-#### 3.2.1. Security Investigations
+#### 3.2.1. Documentation, Programming and scripting fundamentals
 
-Learn how to create documentation in markdown, keep track of your work in git, connect to SIEM tools from python notebooks (also known as Jupyter Notebooks), and use pandas to interrogate, analyse and report on datasets at scale. Keeping track of advanced investigative activities in python notebooks is an good way to share complex procedures in an open, repeatable, refinable format that can be rapidly re-used for subsequent investigations.
+Learn how to create documentation in markdown, keep track of your work in git, code in python and automate tasks in powershell. Developing good documentation skills, and having a good grasp of coding and scripting significantly enhances your abilities to compose information and orchestrate computers, both excellent skills to have in your toolbelt as a security professional.
 
 ![Git Branching](branching.png)
-![Jupyter Notebook Architecture](jupyter-architecture.png)
 
 1. [Basic writing and formatting guide (GitHub Markdown)](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) - use markdown docs in git repos for managing code, detection rules, investigation evidence.
-1. [Hello. World (GitHub Docs)](https://docs.github.com/en/get-started/quickstart/hello-world) - use git to manage all your work and track who has changed what.
+2. [Hello. World (GitHub Docs)](https://docs.github.com/en/get-started/quickstart/hello-world) - use git to manage all your work and track who has changed what.
+3. [Python lessons 1-20 (Code with Vincent)](https://www.youtube.com/watch?v=r0cGhyzFzco&list=PLEcHbCIBlyJryQxxElze2C_xMHLAJW94C&index=3) - if you are new to programming this will get you up to speed with variables, functions, conditional statements, loops, lists, dictionaries, objects, interfaces
+4. [Automate administrative tasks by using PowerShell](https://docs.microsoft.com/en-us/learn/paths/powershell/) - learn to run commands, how to learn more about PowerShell and it's modules and additionally to create and run script files.
+5. [How to ask Technical Questions (Princeton)](https://princetonuniversity.github.io/PUbootcamp/sessions/technical-questions/HowToAskQuestions2018Bootcamp.pdf) - once you are dealing with complex technical activities, having a good approach for understanding where to look next for assistance is a very useful skill.
+
+#### 3.2.2. Security Investigations with Python Notebooks
+
+Connect to SIEM tools from python notebooks (also known as Jupyter Notebooks), and use pandas to interrogate, analyse and report on datasets at scale. Keeping track of advanced investigative activities in python notebooks is a good way to share complex procedures in an open, repeatable, refinable format that can be rapidly re-used for subsequent investigations.
+
 1. [Connect to Azure Sentinel from pandas (Infosec Jupyter Notebook)](https://infosecjupyterbook.com/use-cases/data-connectors/azure_sentinel.html) jupyterbook guide
 1. [10 minutes to pandas (pandas documentation)](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) user guide
 ![Pandas Reshaping](pandas-reshaping.png)
+1. [Revise Hunt for Threats (SC-200) using Jupyter Desktop](https://docs.microsoft.com/en-us/learn/modules/perform-threat-hunting-sentinel-with-notebooks/)
 
-### 3.3. Cheatsheets
+Once you have a handle on developing the above notebooks, you should be able to export some data from your tools and rapidly assess it using community threat intelligence resources such as:
+
+- [urlscan.io](https://urlscan.io/) - Website scanner for suspicious and malicious URLs.
+- [VirusTotal](https://www.virustotal.com/gui/home/upload) - Analyze suspicious files, domains, IPs and URLs to detect malware and other breaches, automatically share them with the security community.
+- [AbuseIPDB](https://www.abuseipdb.com/) - central repository of IP abuse reports.
+- [Shodan](https://www.shodan.io/) - details of internet connected devices updated weekly.
+
+![Rest basics](restbasics.png)
+
+### 3.3. Skill Check - Develop a Security Notebook
+
+Develop a security notebook that reads security event data from a local csv and check the entities/indicators/observables against a community api such as [urlscan.io](https://urlscan.io/docs/api/) or [VirusTotal](https://developers.virustotal.com/reference/overview) to validate if there is any known sources of concern.
+
+- Develop your security investigative notebooks in a git repository to share with your team.
+- Test with known malicious indicators to validate they work.
+- Include usage documentation for your notebook in markdown in your git repository.
+
+### 3.4. Cheatsheets
 
 The below one pagers are great to print out and use as reference material while familiarising yourself with tools.
 
@@ -70,16 +97,16 @@ The below one pagers are great to print out and use as reference material while 
 - [Python](https://cheatography.com/davechild/cheat-sheets/python/) - one-page reference sheet for the Python programming language.
 - [Pandas](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf) - Data Wrangling with pandas Cheat Sheet.
 
-### 3.4. Microsoft tooling in depth
+### 3.5. Microsoft tooling in depth
 
 For those using a Microsoft toolset the below guides have in-depth details on operating a SIEM, managing security across microsoft tools, and securely operating systems on Microsoft Azure. The [WA SOC](https://www.wa.gov.au/organisation/department-of-the-premier-and-cabinet/office-of-digital-government/cyber-security-unit) maintains the [WA SOC Microsoft Sentinel Connector Guidance](https://github.com/wagov/soc-onboarding/blob/main/Sentinel-Connector-Guidance.md) intended to be a guided path to achieving good security coverage using primarily Microsoft Sentinel as a SIEM.
 
-![](azure.png)
+![Azure service overview](azure.png)
 
 1. [Become a Microsoft Sentinel Ninja: The complete level 400](https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/become-a-microsoft-sentinel-ninja-the-complete-level-400/ba-p/1246310) training
 1. [Cybersecurity Architect Expert (SC-100)](https://docs.microsoft.com/en-us/certifications/cybersecurity-architect-expert/) certification - design forward-looking strategies for security, governance, risk, compliance covering users, workstations, infrastructure, data and applications.
 
-### 3.5. Public cloud tooling in depth
+### 3.6. Public cloud tooling in depth
 
 Several other cloud providers have operational security training that is designed for easy adoption on their platforms, relevant certifications of interest are below (note there is high overlap between cloud providers, so the microsoft training above should make the below learning paths much easier to complete).
 
