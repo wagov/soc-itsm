@@ -1,20 +1,75 @@
-## Logging In to the WA SOC Incident Reporting Portal (IRP)
-You can access the new ITSM portal at [WA Security Operations Centre - IRP](https://wasoc.atlassian.net/servicedesk/customer/portals "https://wasoc.atlassian.net/servicedesk/customer/portals"). An account will need to be provisioned for your user to access this, if you don't already have an account on this portal, please ask an existing account holder to request one using the [Request access to the Incident Reporting Portal - WASOC IRP](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/8) form.
+# WA SOC Incident Reporting Portal (IRP) - Pilot
+
+- [1. Overview](#1-overview)
+- [2. Getting access](#2-getting-access)
+  - [2.1. Logging in to the WASOC IRP](#21-logging-in-to-the-wasoc-irp)
+- [3. Creating a Cybersecurity Incident](#3-creating-a-cybersecurity-incident)
+- [4. Managing your Cybersecurity Incidents](#4-managing-your-cybersecurity-incidents)
+  - [4.1. Managing your SIEM Sentinel Analytic Rules](#41-managing-your-siem-sentinel-analytic-rules)
+- [5. General security advice](#5-general-security-advice)
+- [6. Monthly Reporting](#6-monthly-reporting)
+
+## 1. Overview
+
+The cyber security incident reporting portal provides a secured login for each Western Australian government agency to:
+
+- report cyber incidents
+- enable coordination of incident response
+- receive updates on ongoing cyber security events and topics
+
+![Portal Overview](/images/portal-overview.png)
+
+## 2. Getting access
+
+- Agencies can request access by emailing cybersecurity@dpc.wa.gov.au.
+- Agencies with existing access can use the [Request access to the Incident Reporting Portal](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/8) WASOC IRP form.
+
+### 2.1. Logging in to the WASOC IRP
+
+The [WA Security Operations Centre - IRP](https://wasoc.atlassian.net/servicedesk/customer/portals "https://wasoc.atlassian.net/servicedesk/customer/portals") is accessible using any modern browser.
 
 When logging in you will be prompted to use Single Sign On, please do this and **Continue with Microsoft** for your Atlassian Identity.
 
-### Creating an Incident
-The process for manually creating an incident is below:
-- Navigate to the [Report a cyber incident - WASOC IRP](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/19) form
-- Enter the details of your incident
-- Select **Share with** your organisation
+## 3. Creating a Cybersecurity Incident
 
-You can view all of your security teams incidents here - [Requests - WASOC IRP](https://wasoc.atlassian.net/servicedesk/customer/user/requests?page=1&reporter=all)
+- [Report a cyber incident](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/19) - WASOC IRP form
+  - Enter the details of your incident
+  - Select **Share with** your organisation
+- SIEM Sentinel incidents will be automatically integrated with the IRP for monitored customers.
+- To manage alerting and integrations, please use the [Request Assistance](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/1) WASOC IRP form
 
-Most incident creation can be done automatically via a webhook ingestion configured from your SIEM. The WA SOC has an ingestion connector for Sentinel that can be configured by default for your Security Operations Team (for further information on this please reach out via the [Request Assistance - WASOC IRP](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/1)) form.
 
-### Comments and updates
-Once an incident is created there may be further discussion required to complete or resolve the incident. This can be done by adding comments to one of your existing incidents in the portal. Note that as incidents are worked on the reporter will receive email updates that should include a link back to the relevant incident.
+## 4. Managing your Cybersecurity Incidents
 
-### Reporting
-A summary of incident statistics and associated metrics will be included in the SOC monthly reports for your organisation.
+You can view all of your security teams incidents on the [Requests page](https://wasoc.atlassian.net/servicedesk/customer/user/requests?page=1&reporter=all) in the WASOC IRP.
+
+The below actions can be taken on your incidents, noting that all standard activities (classification, severity, labeling, comments) should be able to be undertaken in your SIEM and automatically synced to the IRP.
+
+- Search existing incidents by summary, description or entities
+- Add comment/ updates to an Incident
+  - If you add comments in your SIEM they will sync automatically
+  - Attachments and Non-SIEM Incidents can be directly commented on in the portal
+- Request assistance
+- Create a post-incident review
+  - The WA SOC can review your PIR and provide additional context as needed
+
+### 4.1. Managing your SIEM Sentinel Analytic Rules
+
+If your team is seeing a lot of false positive detections, please review [Handle false positives in Microsoft Sentinel
+](https://docs.microsoft.com/en-us/azure/sentinel/false-positives) and reach out to the SOC using [Request Assistance](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/1) for further advice.
+
+## 5. General security advice
+
+For any other SIEM advice, general security problems and questions don't hesitate to reach out to the SOC using [Request Assistance](https://wasoc.atlassian.net/servicedesk/customer/portal/2/group/1/create/1). For any urgent incidents please call us on Teams or via phone.
+
+## 6. Monthly Reporting
+
+The below aggregate statistics are being captured by the new portal and will be available shortly in the SOC monthly reports for your organisation.
+
+- Incident statistics
+  - Total Detections
+  - Triage types (automated, manual)
+  - True / False / Benign breakdown
+- MITRE tactics & techniques breakdown
+- SIEM ingested event coverage by table
+- Detection effectiveness by rule

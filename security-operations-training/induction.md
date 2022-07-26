@@ -36,10 +36,10 @@ The below training and certifications are all free, and provide a good foundatio
 ### 3.1. IT Infrastructure and Cloud fundamentals
 
 Most IT services are delivered as layers ontop of several supporting services.
-![Cloud Services Overview](cloudserviceoverview.png)
+![Cloud Services Overview](/images/cloudserviceoverview.png)
 
 To secure a modern public cloud start with understanding shared security responsibility models. It is crucial to understand where to effectively apply investment (i.e. where to focus security resources) to ensure a useful outcome.
-![Cloud Enabled Security](cloud-enabled-security.svg)
+![Cloud Enabled Security](/images/cloud-enabled-security.svg)
 
 If you are relatively new to public cloud services and/or IT infrastructure, please start with the [Azure Fundamentals (AZ-900)](https://docs.microsoft.com/en-us/certifications/azure-fundamentals/) and [Security, Compliance, and Identity Fundamentals (SC-900)](https://docs.microsoft.com/en-us/certifications/security-compliance-and-identity-fundamentals/) certifications.
 
@@ -54,7 +54,7 @@ Learn the basics of triaging and responding to incidents, including collaboratio
 
 Learn how to create documentation in markdown, keep track of your work in git, code in python and automate tasks in powershell. Developing good documentation skills, and having a good grasp of coding and scripting significantly enhances your abilities to compose information and orchestrate computers, both excellent skills to have in your toolbelt as a security professional.
 
-![Git Branching](branching.png)
+![Git Branching](/images/branching.png)
 
 1. [Basic writing and formatting guide (GitHub Markdown)](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) - use markdown docs in git repos for managing code, detection rules, investigation evidence.
 2. [Hello. World (GitHub Docs)](https://docs.github.com/en/get-started/quickstart/hello-world) - use git to manage all your work and track who has changed what.
@@ -67,8 +67,9 @@ Learn how to create documentation in markdown, keep track of your work in git, c
 Connect to SIEM tools from python notebooks (also known as Jupyter Notebooks), and use pandas to interrogate, analyse and report on datasets at scale. Keeping track of advanced investigative activities in python notebooks is a good way to share complex procedures in an open, repeatable, refinable format that can be rapidly re-used for subsequent investigations.
 
 1. [Connect to Azure Sentinel from pandas (Infosec Jupyter Notebook)](https://infosecjupyterbook.com/use-cases/data-connectors/azure_sentinel.html) jupyterbook guide
-1. [10 minutes to pandas (pandas documentation)](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) user guide
-![Pandas Reshaping](pandas-reshaping.png)
+![Jupyter overview](/images/jupyter-architecture.png)
+2. [10 minutes to pandas (pandas documentation)](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) user guide
+![Pandas Reshaping](/images/pandas-reshaping.png)
 1. [Revise Hunt for Threats (SC-200) using Jupyter Desktop](https://docs.microsoft.com/en-us/learn/modules/perform-threat-hunting-sentinel-with-notebooks/)
 
 Once you have a handle on developing the above notebooks, you should be able to export some data from your tools and rapidly assess it using community threat intelligence resources such as:
@@ -78,7 +79,7 @@ Once you have a handle on developing the above notebooks, you should be able to 
 - [AbuseIPDB](https://www.abuseipdb.com/) - central repository of IP abuse reports.
 - [Shodan](https://www.shodan.io/) - details of internet connected devices updated weekly.
 
-![Rest basics](restbasics.png)
+![Rest basics](/images/restbasics.png)
 
 ### 3.3. Skill Check - Develop a Security Notebook
 
@@ -101,7 +102,7 @@ The below one pagers are great to print out and use as reference material while 
 
 For those using a Microsoft toolset the below guides have in-depth details on operating a SIEM, managing security across microsoft tools, and securely operating systems on Microsoft Azure. The [WA SOC](https://www.wa.gov.au/organisation/department-of-the-premier-and-cabinet/office-of-digital-government/cyber-security-unit) maintains the [WA SOC Microsoft Sentinel Connector Guidance](https://github.com/wagov/soc-onboarding/blob/main/Sentinel-Connector-Guidance.md) intended to be a guided path to achieving good security coverage using primarily Microsoft Sentinel as a SIEM.
 
-![Azure service overview](azure.png)
+![Azure service overview](/images/azure.png)
 
 1. [Become a Microsoft Sentinel Ninja: The complete level 400](https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/become-a-microsoft-sentinel-ninja-the-complete-level-400/ba-p/1246310) training
 1. [Cybersecurity Architect Expert (SC-100)](https://docs.microsoft.com/en-us/certifications/cybersecurity-architect-expert/) certification - design forward-looking strategies for security, governance, risk, compliance covering users, workstations, infrastructure, data and applications.
@@ -111,8 +112,8 @@ For those using a Microsoft toolset the below guides have in-depth details on op
 Several other cloud providers have operational security training that is designed for easy adoption on their platforms, relevant certifications of interest are below (note there is high overlap between cloud providers, so the microsoft training above should make the below learning paths much easier to complete).
 
 1. [AWS Skill Builder - Security Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/91/security-learning-plan) leads to [AWS Certified Security - Specialty](https://aws.amazon.com/certification/certified-security-specialty/)
-![AWS Security shared responsibility](aws-shared.png)
+![AWS Security shared responsibility](/images/aws-shared.png)
 1. [Oracle become a cloud security professional](https://mylearn.oracle.com/learning-path/become-a-cloud-security-professional/108608) leads to [Oracle Cloud Infrastructure 2022 Security Professional 1Z0-1104-22](https://education.oracle.com/en/oracle-cloud-infrastructure-2022-certified-security-professional/trackp_OCIS2022CP)
-![Oracle Cloud Infrastructure services overview](oracle.png)
+![Oracle Cloud Infrastructure services overview](/images/oracle.png)
 1. [Google Security Engineer learning path](https://cloud.google.com/training/networking-security/#security-engineer-learning-path) leads to [Google Professional Cloud Security Engineer](https://cloud.google.com/certification/cloud-security-engineer)
-![Google Cloud Platform services overview](google.png)
+![Google Cloud Platform services overview](/images/google.png)
