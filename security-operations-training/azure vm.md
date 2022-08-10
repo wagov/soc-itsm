@@ -4,11 +4,29 @@
 
 [Microsoft Documents](https://docs.microsoft.com/en-us/azure/virtual-machines/) - Main Documentation for learning more about Azure VMs
 
-## Excercises
+## Exercises
 
-A program of excersise to assist with learning and training with Azure Vms
+A program of excersise to assist with learning and training with Azure VMs
 
-### Basic Deployment
+### 1. Basic Deployment
+---
 
-[Microsoft Portal Exercise](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal)
+**Prerequisite**
+
+ - SSH Client installed 
+ - Firewall Rule allowance for SSH Protocol (port 22)
+
+
+**Portal Deployment**
+
+ - [Microsoft Portal Exercise](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal) - Default exercise for deploying VMs via Portal
+
+**WASOC  WIL Exercise**
+
+TODO
+
+### WAF Deployment
+----
+
+TODO
 
