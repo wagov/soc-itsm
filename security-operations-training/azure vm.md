@@ -116,6 +116,9 @@ docker run -d -p 80:80 \
 
 ## 2.1 Basic
 
+<<<<<<< HEAD
+## WAF Deployment
+=======
 Basic security hardening is accepatable for testing but is not recommended alone for extensive development and production workloads
 
 ## Network Security Group
@@ -264,7 +267,8 @@ You can enable JIT on a VM from the Azure virtual machines pages of the Azure po
 
     1. When you've finished editing the ports, select **Save**.
 
+>>>>>>> 16afc1e4ce5ed0bd8507b3ca8a254127179a2af1
 ----
 
-TODO
+## WAF Deployment
 
