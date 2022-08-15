@@ -118,14 +118,16 @@ docker run -d -p 80:80 \
 
 
 ## WAF Deployment
-=======
+
 Basic security hardening is accepatable for testing but is not recommended alone for extensive development and production workloads
 
 ## Network Security Group
 
 ### Whitelist/Allow IP
 
-## 2.1 Moderate
+
+
+## 2.2 Moderate
 
 ## WAF
 
@@ -145,7 +147,7 @@ Basic security hardening is accepatable for testing but is not recommended alone
    - **WAF Policy**: Select **Create new**, type a name for the new policy, and then select **OK**.
      This creates a basic WAF policy with a managed Core Rule Set (CRS).
 
-     :::image type="content" source="../media/application-gateway-web-application-firewall-portal/application-gateway-create-basics.png" alt-text="Screenshot of Create new application gateway: Basics tab." lightbox="../media/application-gateway-web-application-firewall-portal/application-gateway-create-basics.png":::
+    Image TODO
 
 2.  For Azure to communicate between the resources that you create, it needs a virtual network. You can either create a new virtual network or use an existing one. In this example, you'll create a new virtual network at the same time that you create the application gateway. Application Gateway instances are created in separate subnets. You create two subnets in this example: one for the application gateway, and another for the backend servers.
 
@@ -174,7 +176,7 @@ Basic security hardening is accepatable for testing but is not recommended alone
 3. Select the NSG you want to enable logging for.
 4. Under **MONITORING**, select **Diagnostics logs**, and then select **Turn on diagnostics**, as shown in the following picture:
 
-   ![Turn on diagnostics](./media/virtual-network-nsg-manage-log/turn-on-diagnostics.png)
+   Image TODO
 
 5. Under **Diagnostics settings**, enter, or select the following information, and then select **Save**:
 
@@ -185,7 +187,7 @@ Basic security hardening is accepatable for testing but is not recommended alone
     | LOG                                                                                         | Select either, or both log categories. To learn more about the data logged for each category, see [Log categories](#log-categories).                                                                                                                                             |
 6. View and analyze logs. For more information, see [View and analyze logs](#view-and-analyze-logs).
 
-## 2.2 Advanced
+## 2.3 Advanced
 
 ## Network Watcher
 
@@ -193,7 +195,7 @@ Basic security hardening is accepatable for testing but is not recommended alone
 
 Navigate to **All Services** > **Networking** > **Network Watcher**. You can select all the subscriptions you want to enable Network Watcher for. This action creates a Network Watcher in every region that is available.
 
-![create a network watcher](./media/network-watcher-create/figure1.png)
+Image TODO
 
 When you enable Network Watcher using the portal, the name of the Network Watcher instance is automatically set to *NetworkWatcher_region_name* where *region_name* corresponds to the Azure region where the instance is enabled. For example, a Network Watcher enabled in the West Central US region is named *NetworkWatcher_westcentralus*.
 
