@@ -112,9 +112,158 @@ docker run -d -p 80:80 \
 ```
 
 ## 2. Security Hardening
+---
 
+## 2.1 Basic
 
-### WAF Deployment
+Basic security hardening is accepatable for testing but is not recommended alone for extensive development and production workloads
+
+## Network Security Group
+
+### Whitelist/Allow IP
+
+## 2.1 Moderate
+
+## WAF
+
+### Create an application gateway
+
+1. Select **Create a resource** on the left menu of the Azure portal. The **New** window appears.
+
+2. Select **Networking** and then select **Application Gateway** in the **Featured** list.
+
+### Basics tab
+
+1. On the **Basics** tab, enter these values for the following application gateway settings:
+
+   - **Resource group**: Select **myResourceGroupAG** for the resource group. If it doesn't exist, select **Create new** to create it.
+   - **Application gateway name**: Enter *myAppGateway* for the name of the application gateway.
+   - **Tier**: select **WAF V2**.
+   - **WAF Policy**: Select **Create new**, type a name for the new policy, and then select **OK**.
+     This creates a basic WAF policy with a managed Core Rule Set (CRS).
+
+     :::image type="content" source="../media/application-gateway-web-application-firewall-portal/application-gateway-create-basics.png" alt-text="Screenshot of Create new application gateway: Basics tab." lightbox="../media/application-gateway-web-application-firewall-portal/application-gateway-create-basics.png":::
+
+2.  For Azure to communicate between the resources that you create, it needs a virtual network. You can either create a new virtual network or use an existing one. In this example, you'll create a new virtual network at the same time that you create the application gateway. Application Gateway instances are created in separate subnets. You create two subnets in this example: one for the application gateway, and another for the backend servers.
+
+    Under **Configure virtual network**,  select **Create new** to create a new virtual network. In the **Create virtual network** window that opens, enter the following values to create the virtual network and two subnets:
+
+    - **Name**: Enter *myVNet* for the name of the virtual network.
+
+    - **Subnet name** (Application Gateway subnet): The **Subnets** grid will show a subnet named *Default*. Change the name of this subnet to *myAGSubnet*.<br>The application gateway subnet can contain only application gateways. No other resources are allowed.
+
+    - **Subnet name** (backend server subnet): In the second row of the **Subnets** grid, enter *myBackendSubnet* in the **Subnet name** column.
+
+    - **Address range** (backend server subnet): In the second row of the **Subnets** Grid, enter an address range that doesn't overlap with the address range of *myAGSubnet*. For example, if the address range of *myAGSubnet* is 10.21.0.0/24, enter *10.21.1.0/24* for the address range of *myBackendSubnet*.
+
+    Select **OK** to close the **Create virtual network** window and save the virtual network settings.
+
+    Image TODO
+    
+3. On the **Basics** tab, accept the default values for the other settings and then select **Next: Frontends**.
+
+## Firewall
+
+Deploy the firewall into the VNet.
+
+1. On the Azure portal menu or from the **Home** page, select **Create a resource**.
+2. Type **firewall** in the search box and press **Enter**.
+3. Select **Firewall** and then select **Create**.
+4. On the **Create a Firewall** page, use the following table to configure the firewall:
+
+   |Setting  |Value  |
+   |---------|---------|
+   |Subscription     |\<your subscription\>|
+   |Resource group     |**Test-FW-RG** |
+   |Name     |**Test-FW01**|
+   |Region     |Select the same location that you used previously|
+   |Firewall tier|**Standard**|
+   |Firewall management|**Use Firewall rules (classic) to manage this firewall**|
+   |Choose a virtual network     |**Use existing**: **Test-FW-VN**|
+   |Public IP address     |**Add new**<br>**Name**:  **fw-pip**|
+
+5. Accept the other default values, then select **Review + create**.
+6. Review the summary, and then select **Create** to create the firewall.
+
+   This will take a few minutes to deploy.
+7. After deployment completes, go to the **Test-FW-RG** resource group, and select the **Test-FW01** firewall.
+8. Note the firewall private and public IP addresses. You'll use these addresses later.
+
+## NSG Logging
+
+## 2.2 Advanced
+
+### Network Watcher
+
+## DDOS Protection
+
+### Create a DDoS protection plan
+
+1. Select **Create a resource** in the upper left corner of the Azure portal.
+1. Search the term *DDoS*. When **DDoS protection plan** appears in the search results, select it.
+1. Select **Create**.
+1. Enter or select the following values.
+
+    |Setting        |Value                                              |
+    |---------      |---------                                          |
+    |Subscription   | Select your subscription.                         |
+    |Resource group | Enter exisitng **MyResourceGroup**.|
+    |Name           | Enter **MyDdosProtectionPlan**.                     |
+    |Region         | Enter **Australia East**.                                  |
+
+1. Select **Review + create** then **Create**
+
+### Enable DDoS protection for an existing virtual network
+
+1. Create a DDoS protection plan by completing the steps in [Create a DDoS protection plan](#create-a-ddos-protection-plan), if you don't have an existing DDoS protection plan.
+1. Enter the name of the virtual network that you want to enable DDoS Protection Standard for in the **Search resources, services, and docs box** at the top of the Azure portal. When the name of the virtual network appears in the search results, select it.
+1. Select **DDoS protection**, under **Settings**.
+1. Select **Enable**. Under **DDoS protection plan**, select an existing DDoS protection plan, or the plan you created in step 1, and then click **Save**. The plan you select can be in the same, or different subscription than the virtual network, but both subscriptions must be associated to the same Azure Active Directory tenant. 
+
+### Just-In-Time Access Control (JIT)
+
+For further information on [Just In Time Access](https://docs.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview?tabs=defender-for-container-arch-aks)
+
+### Enable JIT on your VMs from Azure virtual machines
+
+You can enable JIT on a VM from the Azure virtual machines pages of the Azure portal.
+
+![Configuring JIT VM access in Azure virtual machines.](./media/just-in-time-access-usage/jit-config-virtual-machines.gif)
+
+> [!TIP]
+> If a VM already has just-in-time enabled, when you go to its configuration page you'll see that just-in-time is enabled and you can use the link to open the just-in-time VM access page in Defender for Cloud, and view and change the settings.
+
+1. From the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**. 
+
+1. Select the virtual machine you want to protect with JIT.
+
+1. In the menu, select **Configuration**.
+
+1. Under **Just-in-time access**, select **Enable just-in-time**. 
+
+    This enables just-in-time access for the VM using the following default settings:
+
+    - Windows machines:
+        - RDP port 3389
+        - Three hours of maximum allowed access
+        - Allowed source IP addresses is set to Any
+    - Linux machines:
+        - SSH port 22
+        - Three hours of maximum allowed access
+        - Allowed source IP addresses is set to Any
+
+1. To edit any of these values, or add more ports to your JIT configuration, use Microsoft Defender for Cloud's just-in-time page:
+
+    1. From Defender for Cloud's menu, select **Just-in-time VM access**.
+
+    1. From the **Configured** tab, right-click on the VM to which you want to add a port, and select edit. 
+
+        Image TODO
+
+    1. Under **JIT VM access configuration**, you can either edit the existing settings of an already protected port or add a new custom port.
+
+    1. When you've finished editing the ports, select **Save**.
+
 ----
 
 TODO
