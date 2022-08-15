@@ -116,7 +116,7 @@ docker run -d -p 80:80 \
 
 ## 2.1 Basic
 
-<<<<<<< HEAD
+
 ## WAF Deployment
 =======
 Basic security hardening is accepatable for testing but is not recommended alone for extensive development and production workloads
@@ -165,6 +165,42 @@ Basic security hardening is accepatable for testing but is not recommended alone
     
 3. On the **Basics** tab, accept the default values for the other settings and then select **Next: Frontends**.
 
+## NSG Logging
+
+### Azure portal
+
+1. Sign in to the [portal](https://portal.azure.com).
+2. Select **All services**, then type *network security groups*. When **Network security groups** appear in the search results, select it.
+3. Select the NSG you want to enable logging for.
+4. Under **MONITORING**, select **Diagnostics logs**, and then select **Turn on diagnostics**, as shown in the following picture:
+
+   ![Turn on diagnostics](./media/virtual-network-nsg-manage-log/turn-on-diagnostics.png)
+
+5. Under **Diagnostics settings**, enter, or select the following information, and then select **Save**:
+
+    | Setting                                                                                     | Value                                                          |
+    | ---------                                                                                   |---------                                                       |
+    | Name                                                                                        | A name of your choosing.  For example: *myNsgDiagnostics*      |
+    | **Archive to a storage account**, **Stream to an event hub**, and **Send to Log Analytics** | You can select as many destinations as you choose. To learn more about each, see [Log destinations](#log-destinations).                                                                                                                                           |
+    | LOG                                                                                         | Select either, or both log categories. To learn more about the data logged for each category, see [Log categories](#log-categories).                                                                                                                                             |
+6. View and analyze logs. For more information, see [View and analyze logs](#view-and-analyze-logs).
+
+## 2.2 Advanced
+
+## Network Watcher
+
+### Create a Network Watcher in the portal
+
+Navigate to **All Services** > **Networking** > **Network Watcher**. You can select all the subscriptions you want to enable Network Watcher for. This action creates a Network Watcher in every region that is available.
+
+![create a network watcher](./media/network-watcher-create/figure1.png)
+
+When you enable Network Watcher using the portal, the name of the Network Watcher instance is automatically set to *NetworkWatcher_region_name* where *region_name* corresponds to the Azure region where the instance is enabled. For example, a Network Watcher enabled in the West Central US region is named *NetworkWatcher_westcentralus*.
+
+The Network Watcher instance is automatically created in a resource group named *NetworkWatcherRG*. The resource group is created if it does not already exist.
+
+If you wish to customize the name of a Network Watcher instance and the resource group it's placed into, you can use PowerShell, the Azure CLI, the REST API, or ARMClient methods described in the sections that follow. In each option, the resource group must exist before you create a Network Watcher in it.  
+
 ## Firewall
 
 Deploy the firewall into the VNet.
@@ -191,12 +227,6 @@ Deploy the firewall into the VNet.
    This will take a few minutes to deploy.
 7. After deployment completes, go to the **Test-FW-RG** resource group, and select the **Test-FW01** firewall.
 8. Note the firewall private and public IP addresses. You'll use these addresses later.
-
-## NSG Logging
-
-## 2.2 Advanced
-
-### Network Watcher
 
 ## DDOS Protection
 
@@ -267,8 +297,5 @@ You can enable JIT on a VM from the Azure virtual machines pages of the Azure po
 
     1. When you've finished editing the ports, select **Save**.
 
->>>>>>> 16afc1e4ce5ed0bd8507b3ca8a254127179a2af1
 ----
-
-## WAF Deployment
 
