@@ -272,6 +272,23 @@ Review the settings on the **Review + create** tab, and then select **Create** t
 
 > Creation of the WAF can take up to 5 -30 minutes to complete
 
+### Configure Firewall
+
+1. In the newly created WAF, under **settings**, seclect *Web Application Firewall*.
+
+1. Under *Configure*:
+- Change **Tier** to **WAF v2**
+- Change **WAF Status** to **enabled**
+- **WAF Mode** to **Prevention**
+- Under **Global Parameters**, turn **Inspect Request Body** to *off*
+
+1. Under **Rules**:
+- Change **Rule Set** to *OWASP 3.2*
+
+1. Click **Save** to commit changes to WAF.
+
+
+
 ## WAF Logging (Sentinel)
 
 1. Select Diagnostic logs.​
@@ -282,6 +299,47 @@ Review the settings on the **Review + create** tab, and then select **Create** t
    - Choose the log destination workspace.​
    - Select the categories that you want to analyze (recommended: ApplicationGatewayAccessLog, ApplicationGatewayFirewallLog, FrontdoorAccessLog, FrontdoorWebApplicationFirewallLog, WebApplicationFirewallLogs).​
    - Click Save.
+
+## Just In Time Access (JIT)
+
+You can enable JIT on a VM from the Azure virtual machines pages of the Azure portal.
+
+
+> [!TIP]
+> If a VM already has just-in-time enabled, when you go to its configuration page you'll see that just-in-time is enabled and you can use the link to open the just-in-time VM access page in Defender for Cloud, and view and change the settings.
+
+1. From the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**. 
+
+1. Select the virtual machine you want to protect with JIT.
+
+1. In the menu, select **Configuration**.
+
+1. Under **Just-in-time access**, select **Enable just-in-time**. 
+
+    This enables just-in-time access for the VM using the following default settings:
+
+    - Windows machines:
+        - RDP port 3389
+        - Three hours of maximum allowed access
+        - Allowed source IP addresses is set to Any
+    - Linux machines:
+        - SSH port 22
+        - Three hours of maximum allowed access
+        - Allowed source IP addresses is set to Any
+
+1. To edit any of these values, or add more ports to your JIT configuration, use Microsoft Defender for Cloud's just-in-time page:
+
+    1. From Defender for Cloud's menu, select **Just-in-time VM access**.
+
+    1. From the **Configured** tab, right-click on the VM to which you want to add a port, and select edit. 
+
+        Image TODO
+
+    1. Under **JIT VM access configuration**, you can either edit the existing settings of an already protected port or add a new custom port.
+
+    1. When you've finished editing the ports, select **Save**.
+
+For further information on [Just In Time Access](https://docs.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview?tabs=defender-for-container-arch-aks)
 
 
 
@@ -352,50 +410,6 @@ Deploy the firewall into the VNet.
 1. Enter the name of the virtual network that you want to enable DDoS Protection Standard for in the **Search resources, services, and docs box** at the top of the Azure portal. When the name of the virtual network appears in the search results, select it.
 1. Select **DDoS protection**, under **Settings**.
 1. Select **Enable**. Under **DDoS protection plan**, select an existing DDoS protection plan, or the plan you created in step 1, and then click **Save**. The plan you select can be in the same, or different subscription than the virtual network, but both subscriptions must be associated to the same Azure Active Directory tenant. 
-
-### Just-In-Time Access Control (JIT)
-
-For further information on [Just In Time Access](https://docs.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview?tabs=defender-for-container-arch-aks)
-
-### Enable JIT on your VMs from Azure virtual machines
-
-You can enable JIT on a VM from the Azure virtual machines pages of the Azure portal.
-
-![Configuring JIT VM access in Azure virtual machines.](./media/just-in-time-access-usage/jit-config-virtual-machines.gif)
-
-> [!TIP]
-> If a VM already has just-in-time enabled, when you go to its configuration page you'll see that just-in-time is enabled and you can use the link to open the just-in-time VM access page in Defender for Cloud, and view and change the settings.
-
-1. From the [Azure portal](https://portal.azure.com), search for and select **Virtual machines**. 
-
-1. Select the virtual machine you want to protect with JIT.
-
-1. In the menu, select **Configuration**.
-
-1. Under **Just-in-time access**, select **Enable just-in-time**. 
-
-    This enables just-in-time access for the VM using the following default settings:
-
-    - Windows machines:
-        - RDP port 3389
-        - Three hours of maximum allowed access
-        - Allowed source IP addresses is set to Any
-    - Linux machines:
-        - SSH port 22
-        - Three hours of maximum allowed access
-        - Allowed source IP addresses is set to Any
-
-1. To edit any of these values, or add more ports to your JIT configuration, use Microsoft Defender for Cloud's just-in-time page:
-
-    1. From Defender for Cloud's menu, select **Just-in-time VM access**.
-
-    1. From the **Configured** tab, right-click on the VM to which you want to add a port, and select edit. 
-
-        Image TODO
-
-    1. Under **JIT VM access configuration**, you can either edit the existing settings of an already protected port or add a new custom port.
-
-    1. When you've finished editing the ports, select **Save**.
 
 ----
 
