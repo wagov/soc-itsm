@@ -37,7 +37,7 @@ Sign in to the [Azure portal](https://portal.azure.com).
 	Image TODO
 
 
-1. Under **Instance details**, enter *myVM-name* for the **Virtual machine name**, and choose *Ubuntu 20.04 LTS - Gen2* for your **Image**. Leave the other defaults. Select size *Standard_B1ls*. Size availability and pricing are dependent on your region and subscription.
+1. Under **Instance details**, enter *myVM-name* for the **Virtual machine name**, and choose *Standard_B1ls* for your **Image**. Size availability and pricing are dependent on your region and subscription. Leave the other defaults.
 
     Image TODO
     
