@@ -37,12 +37,14 @@ Sign in to the [Azure portal](https://portal.azure.com).
 	Image TODO
 
 
-1. Under **Instance details**, enter *myVM* for the **Virtual machine name**, and choose *Ubuntu 20.04 LTS - Gen2* for your **Image**. Leave the other defaults. The default size and pricing is only shown as an example. Size availability and pricing are dependent on your region and subscription.
+1. Under **Instance details**, enter *myVM-name* for the **Virtual machine name**, and choose *Ubuntu 20.04 LTS - Gen2* for your **Image**. Leave the other defaults. Select size *Standard_B1ls*. Size availability and pricing are dependent on your region and subscription.
 
     Image TODO
+    
+![Azure VM Size](/images/azure-vm-image-size.png)
 
     > [!NOTE]
-    > Some users will now see the option to create VMs in multiple zones. To learn more about this new capability, see [Create virtual machines in an availability zone](../create-portal-availability-zone.md).
+    > Some users will now see the option to create VMs in multiple zones. To learn more about this new capability, see [Create virtual machines in an availability zone](https://docs.microsoft.com/en-us/azure/virtual-machines/create-portal-availability-zone?tabs=standard)
 
 
 1. Under **Administrator account**, select **SSH public key**.
@@ -63,6 +65,16 @@ Sign in to the [Azure portal](https://portal.azure.com).
 
 1. When the **Generate new key pair** window opens, select **Download private key and create resource**. Your key file will be download as **myKey.pem**. Make sure you know where the `.pem` file was downloaded; you will need the path to it in the next step.
 
+1. In **Disks** section, under **Disk options**, create new *virtual network* as **name-vnet**.
+
+1. Confirm that *Delete public IP and NIC when VM is deleted* is selected.
+
+1. In **Management** section, under **Monitoring**, select *disable*.
+
+1. Click **Review + Create** in the buttom left hand corner, to finalise the creation of the VM. Allow for the validation to complete and click on **create**.
+
+1. Download the created private key and create resource.
+
 1. When the deployment is finished, select **Go to resource**.
 
 1. On the page for your new VM, select the public IP address and copy it to your clipboard.
@@ -75,7 +87,11 @@ Sign in to the [Azure portal](https://portal.azure.com).
 
 Create an SSH connection with the VM.
 
-1. If you are on a Mac or Linux machine, open a Bash prompt and set read-only permission on the .pem file using `chmod 400 ~/Downloads/myKey.pem`. If you are on a Windows machine, open a PowerShell prompt. 
+Linux:
+
+1. If you are on a Mac or Linux machine, open a Bash prompt and set read-only permission on the .pem file using `chmod 400 ~/Downloads/myKey.pem`. If you are on a Windows machine, open a PowerShell prompt.
+
+Linux and Windows:
 
 1. At your prompt, open an SSH connection to your virtual machine. Replace the IP address with the one from your VM, and replace the path to the `.pem` with the path to where the key file was downloaded.
 
@@ -105,7 +121,7 @@ Further information reagrding [caddy](https://caddyserver.com/docs/)
 
 ```console
 echo "hello world - My name is <first name>" > index.html
-docker run -d -p 80:80 \
+sudo docker run -d -p 80:80 \
     -v $PWD/index.html:/usr/share/caddy/index.html \
     -v caddy_data:/data \
     caddy
@@ -116,60 +132,27 @@ docker run -d -p 80:80 \
 
 ## 2.1 Basic
 
-
-## WAF Deployment
-
 Basic security hardening is accepatable for testing but is not recommended alone for extensive development and production workloads
 
-## Network Security Group
+## Network Security Group (NSG)
 
 ### Whitelist/Allow IP
 
+> Make a note of the IP address you are currently utilsing
 
+1. In the VM portal, select **networking** in the *setting* blade.
 
-## 2.2 Moderate
+1. Select **Inbound port rules**, select the **SSH** rule to edit the rule setting.
 
-## WAF
+1. Change **source** from *Any* to *IP Addresses*.
 
-### Create an application gateway
+1. In **Source IP addresses/CIDR ranges** add the IP address previously noted.
 
-1. Select **Create a resource** on the left menu of the Azure portal. The **New** window appears.
+1. Click **Save**
 
-2. Select **Networking** and then select **Application Gateway** in the **Featured** list.
+1. Repeat steps for **HTTP** (port 80)
 
-### Basics tab
-
-1. On the **Basics** tab, enter these values for the following application gateway settings:
-
-   - **Resource group**: Select **myResourceGroupAG** for the resource group. If it doesn't exist, select **Create new** to create it.
-   - **Application gateway name**: Enter *myAppGateway* for the name of the application gateway.
-   - **Tier**: select **WAF V2**.
-   - **WAF Policy**: Select **Create new**, type a name for the new policy, and then select **OK**.
-     This creates a basic WAF policy with a managed Core Rule Set (CRS).
-
-    Image TODO
-
-2.  For Azure to communicate between the resources that you create, it needs a virtual network. You can either create a new virtual network or use an existing one. In this example, you'll create a new virtual network at the same time that you create the application gateway. Application Gateway instances are created in separate subnets. You create two subnets in this example: one for the application gateway, and another for the backend servers.
-
-    Under **Configure virtual network**,  select **Create new** to create a new virtual network. In the **Create virtual network** window that opens, enter the following values to create the virtual network and two subnets:
-
-    - **Name**: Enter *myVNet* for the name of the virtual network.
-
-    - **Subnet name** (Application Gateway subnet): The **Subnets** grid will show a subnet named *Default*. Change the name of this subnet to *myAGSubnet*.<br>The application gateway subnet can contain only application gateways. No other resources are allowed.
-
-    - **Subnet name** (backend server subnet): In the second row of the **Subnets** grid, enter *myBackendSubnet* in the **Subnet name** column.
-
-    - **Address range** (backend server subnet): In the second row of the **Subnets** Grid, enter an address range that doesn't overlap with the address range of *myAGSubnet*. For example, if the address range of *myAGSubnet* is 10.21.0.0/24, enter *10.21.1.0/24* for the address range of *myBackendSubnet*.
-
-    Select **OK** to close the **Create virtual network** window and save the virtual network settings.
-
-    Image TODO
-    
-3. On the **Basics** tab, accept the default values for the other settings and then select **Next: Frontends**.
-
-## NSG Logging
-
-### Azure portal
+### NSG Logging (Sentinel)
 
 1. Sign in to the [portal](https://portal.azure.com).
 2. Select **All services**, then type *network security groups*. When **Network security groups** appear in the search results, select it.
@@ -186,6 +169,121 @@ Basic security hardening is accepatable for testing but is not recommended alone
     | **Archive to a storage account**, **Stream to an event hub**, and **Send to Log Analytics** | You can select as many destinations as you choose. To learn more about each, see [Log destinations](#log-destinations).                                                                                                                                           |
     | LOG                                                                                         | Select either, or both log categories. To learn more about the data logged for each category, see [Log categories](#log-categories).                                                                                                                                             |
 6. View and analyze logs. For more information, see [View and analyze logs](#view-and-analyze-logs).
+
+## 2.2 Moderate
+
+## WAF
+
+### Create an application gateway
+
+1. Select **Create a resource** on the left menu of the Azure portal. The **New** window appears.
+
+2. Select **Networking** and then select **Application Gateway** in the **Featured** list.
+
+### Basics tab
+
+1. On the **Basics** tab, enter these values for the following application gateway settings:
+
+   - **Resource group**: Select **myResourceGroupAG** for the resource group. If it doesn't exist, select **Create new** to create it.
+   - **Application gateway name**: Enter *name_WAF* for the name of the application gateway.
+   - **Tier**: select **WAF V2**.
+   - **Region**: select **Australia East**
+   - **Enable autoscaling**: select **No**
+   - **HHTP2**: seclect **Disabled**
+   - **WAF Policy**: Select **Create new**, type a name for the new policy *name_waf_policy*, tick **Add bot Portection** and then select **OK**.
+     This creates a basic WAF policy with a managed Core Rule Set (CRS).
+
+<br>
+
+2.  For Azure to communicate between the resources that you create, it needs a virtual network. You can either create a new virtual network or use an existing one. In this example, you'll create a new virtual network at the same time that you create the application gateway. Application Gateway instances are created in separate subnets. You create two subnets in this example: one for the application gateway, and another for the backend servers.
+
+    - Under **Configure virtual network**, select the the exisitng VM vnet *name-vnet*:
+
+    - **Subnet name** (Create Application Gateway subnet for VM): Click **Manage Subnet OCnfiguration**.<br>The application gateway subnet can contain only application gateways. No other resources are allowed.
+
+    - In VM **subnets**, click **+ Subnets**.
+
+    - In *Add Subnet*, add a name *anme_WAF to the new subnet. Use the Default **Subnet address Range** and Click **save**
+
+    - Back in **Create application Gateway** pane, select newly create *subnet*.
+
+    Image TODO
+    
+3. On the **Basics** tab, accept the default values for the other settings and then select **Next: Frontends**.
+
+### Frontends tab
+
+1. On the **Frontends** tab, verify **Frontend IP address type** is set to **Public**. <br>You can configure the Frontend IP to be Public or Private as per your use case. In this example, you'll choose a Public Frontend IP.
+   > [!NOTE]
+   > For the Application Gateway v2 SKU, there must be a **Public** frontend IP configuration. You can still have both a Public and a Private frontend IP configuration, but Private only frontend IP configuration (Only ILB mode) is currently not enabled for the v2 SKU. 
+
+2. Select **Add new** for the **Public IP address** and enter *name_waf_public_ip* for the public IP address name, and then select **OK**. 
+
+
+
+3. Select **Next: Backends**.
+
+### Backends tab
+
+The backend pool is used to route requests to the backend servers that serve the request. Backend pools can be composed of NICs, virtual machine scale sets, public IP addresses, internal IP addresses, fully qualified domain names (FQDN), and multi-tenant back-ends like Azure App Service. In this example, you'll create an empty backend pool with your application gateway and then add backend targets to the backend pool.
+
+1. On the **Backends** tab, select **Add a backend pool**.
+
+2. In the **Add a backend pool** window that opens, enter the following values to create an empty backend pool:
+
+    - **Name**: Enter *name_waf_backend* for the name of the backend pool.
+    - **Add backend pool without targets**: Select **No**. 
+    - Under **Target Type** select *Virtual MAchine*. 
+    - Select current VM as Target
+
+3. In the **Add a backend pool** window, select **Add**.
+
+4. On the **Backends** tab, select **Next: Configuration**.
+
+### Configuration tab
+
+On the **Configuration** tab, you'll connect the frontend and backend pool you created using a routing rule.
+
+1. Select **Add a routing rule** in the **Routing rules** column.
+
+2. In the **Add a routing rule** window that opens, enter *name_WAF_rule* for the **Rule name**. Add **priority** of *300*.
+
+3. A routing rule requires a listener. On the **Listener** tab within the **Add a routing rule** window, enter the following values for the listener:
+
+    - **Listener name**: Enter *name_WAF_rule_Listener* for the name of the listener.
+    - **Frontend IP**: Select **Public** to choose the public IP you created for the frontend.
+  
+      Accept the default values for the other settings on the **Listener** tab, then select the **Backend targets** tab to configure the rest of the routing rule.
+
+
+4. On the **Backend targets** tab, select **myBackendPool** for the **Backend target**.
+
+5. For the **HTTP setting**, select **Add new** to add a new HTTP setting. The HTTP setting will determine the behavior of the routing rule. In the **Add an HTTP setting** window that opens, enter *nameHTTPSetting* for the **HTTP setting name** and *80* for the **Backend port**. Accept the default values for the other settings in the **Add an HTTP setting** window, then select **Add** to return to the **Add a routing rule** window. 
+
+
+6. On the **Add a routing rule** window, select **Add** to save the routing rule and return to the **Configuration** tab.
+
+
+7. Select **Next: Tags** and then **Next: Review + create**.
+
+### Review + create tab
+
+Review the settings on the **Review + create** tab, and then select **Create** to create the virtual network, the public IP address, and the application gateway. It may take several minutes for Azure to create the application gateway. Wait until the deployment finishes successfully before moving on to the next section.
+
+> Creation of the WAF can take up to 5 -30 minutes to complete
+
+## WAF Logging (Sentinel)
+
+1. Select Diagnostic logs.​
+1. Select + Add diagnostic setting.​
+1. In the Diagnostic setting blade:
+   - Type a Name.
+   - Select Send to Log Analytics.
+   - Choose the log destination workspace.​
+   - Select the categories that you want to analyze (recommended: ApplicationGatewayAccessLog, ApplicationGatewayFirewallLog, FrontdoorAccessLog, FrontdoorWebApplicationFirewallLog, WebApplicationFirewallLogs).​
+   - Click Save.
+
+
 
 ## 2.3 Advanced
 
