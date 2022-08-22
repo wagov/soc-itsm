@@ -6,7 +6,8 @@
   - [3.1. IT Infrastructure and Cloud fundamentals](#31-it-infrastructure-and-cloud-fundamentals)
   - [3.2. Security Operations Basics](#32-security-operations-basics)
     - [3.2.1. Documentation, Programming and scripting fundamentals](#321-documentation-programming-and-scripting-fundamentals)
-    - [3.2.2. Security Investigations with Python Notebooks](#322-security-investigations-with-python-notebooks)
+    - [3.2.2. Creating and securing public cloud workloads](#322-creating-and-securing-public-cloud-workloads)
+    - [3.2.3. Security Investigations with Python Notebooks](#323-security-investigations-with-python-notebooks)
   - [3.3. Skill Check - Develop a Security Notebook](#33-skill-check---develop-a-security-notebook)
   - [3.4. Cheatsheets](#34-cheatsheets)
   - [3.5. Microsoft tooling in depth](#35-microsoft-tooling-in-depth)
@@ -62,7 +63,11 @@ Learn how to create documentation in markdown, keep track of your work in git, c
 4. [Automate administrative tasks by using PowerShell](https://docs.microsoft.com/en-us/learn/paths/powershell/) - learn to run commands, how to learn more about PowerShell and it's modules and additionally to create and run script files.
 5. [How to ask Technical Questions (Princeton)](https://princetonuniversity.github.io/PUbootcamp/sessions/technical-questions/HowToAskQuestions2018Bootcamp.pdf) - once you are dealing with complex technical activities, having a good approach for understanding where to look next for assistance is a very useful skill.
 
-#### 3.2.2. Security Investigations with Python Notebooks
+#### 3.2.2. Creating and securing public cloud workloads
+
+Please work through the [Azure VM](azure%20vm.md) excercises to familiarise yourself with the tools that would typically be used to build and run a secure cloud workload as a VM exposed to the internet.
+
+#### 3.2.3. Security Investigations with Python Notebooks
 
 Connect to SIEM tools from python notebooks (also known as Jupyter Notebooks), and use pandas to interrogate, analyse and report on datasets at scale. Keeping track of advanced investigative activities in python notebooks is a good way to share complex procedures in an open, repeatable, refinable format that can be rapidly re-used for subsequent investigations.
 
