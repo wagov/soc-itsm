@@ -47,3 +47,17 @@ winget install vmware.workstationplayer
 # GIS & Mapping
 winget install OSGeo.QGIS
 ```
+
+## WSL2 setup
+To fix DNS (gets blocked out of the box by windows firewall) and get azure cli, docker & jupyterlab working quickly in WSL2, run the below in the [Ubuntu 22.04](https://apps.microsoft.com/store/detail/ubuntu-22041-lts/9PN20MSR04DW) WSL2 env
+```bash
+echo -e "[network]\ngenerateResolvConf = false" | sudo tee /etc/wsl.conf
+echo "nameserver 9.9.9.9" | sudo tee /etc/resolv.conf
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+curl -fsSL https://get.docker.com | bash
+sudo apt -y install python3-pip && sudo pip3 install jupyterlab pandas matplotlib azure-cli
+# Run below each time you boot WSL to start docker
+sudo service docker start
+# Run below to start jupyterlab, then ctrl-click the link to use it
+jupyter-lab
+```
