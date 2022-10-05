@@ -11,6 +11,7 @@
   - [3.3. Skill Check - Develop a Security Notebook](#33-skill-check---develop-a-security-notebook)
   - [3.4. Cheatsheets](#34-cheatsheets)
   - [3.5. Microsoft tooling in depth](#35-microsoft-tooling-in-depth)
+    - [3.5.1. Understanding Kusto Query Language (KQL)](#351-understanding-kusto-query-language-kql)
   - [3.6. Public cloud tooling in depth](#36-public-cloud-tooling-in-depth)
 
 ## 1. Overview
@@ -106,6 +107,14 @@ The below one pagers are great to print out and use as reference material while 
 ### 3.5. Microsoft tooling in depth
 
 For those using a Microsoft toolset the below guides have in-depth details on operating a SIEM, managing security across microsoft tools, and securely operating systems on Microsoft Azure. The [WA SOC](https://www.wa.gov.au/organisation/department-of-the-premier-and-cabinet/office-of-digital-government/cyber-security-unit) maintains the [WA SOC Microsoft Sentinel Connector Guidance](https://github.com/wagov/soc-onboarding/blob/main/Sentinel-Connector-Guidance.md) intended to be a guided path to achieving good security coverage using primarily Microsoft Sentinel as a SIEM.
+
+#### 3.5.1. Understanding Kusto Query Language (KQL)
+
+The below two resources are a good starting point for understanding KQL in addition to the [Microsoft KQL Overview](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/).
+
+1. [KQL Overview](https://www.youtube.com/watch?v=Pl8n6GaWEo0) Overview video of the whole language (1 hour).
+2. [Must Learn KQL](https://github.com/rod-trent/MustLearnKQL) A blog/book/video channel.
+3. [Kusto Detective Agency](https://detective.kusto.io/inbox) Use KQL as an investigation tool as part of a virtual agency with cases.
 
 ![Azure service overview](/images/azure.png)
 
