@@ -4,11 +4,11 @@ Below is a collection of playbooks, primarily focused on incident response that 
 
 ## Incident Response
 
-![Incident Response](images/incidentresponse.png)
+![Incident Response](/images/incidentresponse.png)
 
 ## Vulnerability Response
 
-![Vulnerability Response](images/vulnerabilityresponse.png)
+![Vulnerability Response](/images/vulnerabilityresponse.png)
 
 ## Threat Hunting
 
